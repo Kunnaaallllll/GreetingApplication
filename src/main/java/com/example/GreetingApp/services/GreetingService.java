@@ -1,4 +1,6 @@
-package com.example.GreetingApp;
+package com.example.GreetingApp.services;
+import com.example.GreetingApp.controller.Greeting;
+import com.example.GreetingApp.repository.GreetingRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

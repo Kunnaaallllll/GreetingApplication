@@ -1,4 +1,5 @@
-package com.example.GreetingApp;
+package com.example.GreetingApp.controller;
+import com.example.GreetingApp.services.GreetingService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.example.GreetingApp;
+package com.example.GreetingApp.controller;
 import jakarta.persistence.*;
 
 @Entity
