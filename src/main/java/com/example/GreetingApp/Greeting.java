@@ -11,7 +11,7 @@ public class Greeting {
     public Greeting() {}
 
     public Greeting(String message) {
-        this.message = message;
+        this.message=message;
     }
 
     public Long getId() {
@@ -20,5 +20,9 @@ public class Greeting {
 
     public String getMessage() {
         return message;
+    }
+
+    public void setMessage(String message) {  // **Setter method added**
+        this.message=message;
     }
 }
