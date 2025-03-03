@@ -1,10 +1,15 @@
 package com.example.GreetingApp;
-
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/greet")
 public class GreetingController {
+
+    private final GreetingService greetingService;
+
+    public GreetingController(GreetingService greetingService) {
+        this.greetingService = greetingService;
+    }
 
     @GetMapping
     public Greeting getGreeting() {
@@ -24,5 +29,10 @@ public class GreetingController {
     @DeleteMapping
     public Greeting deleteGreeting() {
         return new Greeting("Hello from DELETE");
+    }
+
+    @GetMapping("/hello")
+    public Greeting getSimpleGreeting() {
+        return new Greeting(greetingService.getGreetingMessage());
     }
 }
