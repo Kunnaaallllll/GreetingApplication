@@ -33,6 +33,11 @@ public class GreetingController {
         return new Greeting("Hello from DELETE");
     }
 
+    @GetMapping("/hello")
+    public Greeting getSimpleGreeting() {
+        return new Greeting(greetingService.getSimpleGreeting());
+    }
+
     @GetMapping("/greetUser")
     public Greeting getPersonalizedGreeting(@RequestParam(required = false) String firstName,
                                             @RequestParam(required = false) String lastName) {
