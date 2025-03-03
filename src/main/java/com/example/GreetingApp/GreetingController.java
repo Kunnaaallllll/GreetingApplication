@@ -1,6 +1,8 @@
 package com.example.GreetingApp;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/greet")
 public class GreetingController {
@@ -48,6 +50,10 @@ public class GreetingController {
     @GetMapping("/getById")
     public Greeting getGreetingById(@RequestParam Long id) {
         return greetingService.getGreetingById(id);
+    }
+    @GetMapping("/all")
+    public List<Greeting> getAllGreetings() {
+        return greetingService.getAllGreetings();
     }
 
 }
