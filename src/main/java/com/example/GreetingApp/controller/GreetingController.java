@@ -21,16 +21,19 @@ public class GreetingController {
 
     @PostMapping
     public Greeting postGreeting() {
+
         return new Greeting("Hello from POST");
     }
 
     @PutMapping
     public Greeting putGreeting() {
+
         return new Greeting("Hello from PUT");
     }
 
     @DeleteMapping
     public Greeting deleteGreeting() {
+
         return new Greeting("Hello from DELETE");
     }
 

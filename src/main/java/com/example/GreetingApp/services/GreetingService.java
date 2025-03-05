@@ -14,6 +14,7 @@ public class GreetingService {
     }
 
     public String getSimpleGreeting() {
+
         return "Hello World";
     }
 
@@ -34,6 +35,7 @@ public class GreetingService {
     }
 
     public Greeting getGreetingById(Long id) {
+
         return greetingRepository.findById(id).orElse(null);
     }
     public List<Greeting> getAllGreetings() {
@@ -52,6 +54,6 @@ public class GreetingService {
             greetingRepository.deleteById(id);
             return "Greeting with ID " + id + " deleted successfully.";
         }
-        return "Greeting with ID " + id + " not found.";
+        return "" +id+"not found";
     }
 }
