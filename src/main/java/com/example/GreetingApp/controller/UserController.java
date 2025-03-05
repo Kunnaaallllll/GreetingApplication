@@ -2,6 +2,7 @@ package com.example.GreetingApp.controller;
 
 
 
+import com.example.GreetingApp.dto.LoginDTO;
 import com.example.GreetingApp.dto.RegisterDTO;
 import com.example.GreetingApp.model.User;
 import com.example.GreetingApp.services.EmailService;
@@ -46,5 +47,26 @@ public class UserController {
         String body = "Hello " + savedUser.getFullName() + ",\n\nYour account has been successfully created!";
         emailService.sendEmail(savedUser.getEmail(), subject, body);
         return "User Registered Successfully and Your Token is: "+token;
+    }
+
+    @PostMapping("/login")
+    public String loginUser(@Valid@RequestBody LoginDTO loginUser){
+        Optional<User> userExists = userService.getUserByEmail(loginUser.getEmail());
+        if(userExists.isPresent()){
+            User user = userExists.get();
+            if(userService.matchPassword(loginUser.getPassword(),user.getPassword())){
+                String token = jwtUtility.generateToken(user.getEmail());
+                String subject = "Welcome Back to Our Platform!";
+                String body = "Hello " + user.getFullName() + ",\n\nYour account has been successfully Logged In! and Your Token is: "+token;
+                emailService.sendEmail(user.getEmail(), subject, body);
+                return "User Login Successfully and Token is: "+token;
+            }
+            else{
+                return "InValid Crendentials";
+            }
+        }
+        else{
+            return "User Not Found";
+        }
     }
 }
