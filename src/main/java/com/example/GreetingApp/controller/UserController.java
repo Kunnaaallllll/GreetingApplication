@@ -10,11 +10,10 @@ import com.example.GreetingApp.services.UserService;
 import com.example.GreetingApp.utility.JwtUtility;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -68,5 +67,19 @@ public class UserController {
         else{
             return "User Not Found";
         }
+    }
+    @PutMapping("/forgotPassword/{email}")
+    public ResponseEntity<Map<String, String>> forgotPassword(@PathVariable String email, @RequestBody Map<String, String> request) {
+        String newPassword = request.get("password");
+        return userService.forgotPassword(email, newPassword);
+    }
+
+
+    @PutMapping("/resetPassword/{email}")
+    public ResponseEntity<Map<String, String>> resetPassword(
+            @PathVariable String email,
+            @RequestParam String currentPassword,
+            @RequestParam String newPassword) {
+        return userService.resetPassword(email, currentPassword, newPassword);
     }
 }
